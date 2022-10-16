@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>Rock Paper Scissors</title>
+    <script>
+        //Computer Guess Function
+        let computerChoice;
+    function getComputerChoice(){   
+    let num = Math.floor(Math.random() * 3);
+       if(num == 0) {
+         computerChoice = "Rock";
+    } else if (num === 1) {
+         computerChoice = "Paper";
+    } else if (num === 2) {
+        computerChoice = "Scissors";
+    }
+}
+    </script>
+</head>
+<body>
+    <h1 id="Message1">Match In Progress..</h1>
+    <div class="inputs">
+        <div class="userInput">
+            <h1 style="color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;">Player Input!</h1>
+            <label for="userChoice" style="color: white ;"><strong style="margin-left: 130px;">Rock, Paper Or Scissors: </strong></label>
+            <div><input style="display: block; margin-top: 20px; margin-left: 130px; height: 20px; border-radius: 12px;" type="text" name="userChoice" id="_1"></div>
+            <div class="button" style="margin-top: 0px; margin-left: 176px; "><button style="padding:12px; border-radius: 10px" id="submit">Submit</button></div>
+            <script>
+                var c = document.getElementById("submit");
+                let UserChosen = false;
+                let UserChoice;
+
+                c.addEventListener("click", getUserInput)
+
+                function getUserInput(){
+                var input = document.getElementById("_1").value;
+                if(input === "") {
+                    alert("The Input Is Empty!")
+                } else { 
+                    UserChosen = true;
+                    UserChoice = input;
+                }
+            }
+            </script>
+            <img src="./img/Rock,paper,scissors.jpeg" alt="Icons">
+        </div>
+        <div class="computerInput">
+            <h1 style="color:black; ">Computer Input!</h1>
+
+            <div class="box1"><h3 id="ComMessage">Computer Is Choosing</h3></div>
+            <div class="imageBox"> 
+                <img src="./img/Thinking.png" id="thinking">
+            </div>
+            <script>
+                getComputerChoice()
+                
+                c.addEventListener("click", check)
+                c.addEventListener("click", update)
+                let message;
+                function check(){
+                    if(UserChoice == "Rock" && computerChoice == "Paper") {
+                        message = ("GG Computer Wins")
+                    } else if(UserChoice == "Rock" && computerChoice == "Scissors") {
+                        message = ("GG Player Wins!")
+                    } else if(UserChoice == "Rock" && computerChoice == "Rock") {
+                        message = ("Tie!")
+                    } else if(UserChoice == "Scissors" && computerChoice == "Paper") {
+                        message = ("GG Player Wins!")
+                    } else if(UserChoice == "Scissors" && computerChoice == "Rock") {
+                        message = ("GG Computer Wins!")
+                    } else if(UserChoice == "Scissors" && computerChoice == "Scissors") {
+                        message =("Tie!")
+                    } else if(UserChoice == "Paper" && computerChoice == "Rock") {
+                        message = ("GG Player Wins!")
+                    } else if(UserChoice == "Paper" && computerChoice == "Scissors") {
+                        message = ("GG Computer Wins!")
+                    } else if(UserChoice == "Paper" && computerChoice == "Paper") {
+                        message = ("Tie!")
+                    } else {
+                        message = ("Invalid input!")
+                    }
+                    
+                }
+                function update(){
+                    document.getElementById("ComMessage").innerHTML = "Computer Has Chosen:  " + computerChoice
+                    document.getElementById("Message1").innerHTML = message
+                    document.getElementById("thinking").src = "./img/Done.png"
+                }
+            </script>
+        </div>
+    </div>
+    
+</body>
+</html>
