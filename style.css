@@ -35,3 +35,14 @@ img{
 #thinking {
     width: 228px;
 }
+#winCount{
+    margin-left: 160px;
+    color: white;
+    margin-top: 28px;
+    font-size: 38px;
+}
+#cwinCount {
+    margin-left: 120px;
+    margin-top: 36px;
+    font-size: 38px;
+}
