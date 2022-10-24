@@ -25,46 +25,40 @@
         <div class="userInput">
             <h1 style="color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;">Player Input!</h1>
             <label for="userChoice" style="color: white ;"><strong style="margin-left: 130px;">Rock, Paper Or Scissors: </strong></label>
-            <div><input style="display: block; margin-top: 20px; margin-left: 130px; height: 20px; border-radius: 12px;" type="text" name="userChoice" id="_1"></div>
-            <div class="button" style="margin-top: 0px; margin-left: 176px; "><button style="padding:12px; border-radius: 10px" id="submit">Submit</button></div>
-            <script>
-                var c = document.getElementById("submit");
-                let UserChosen = false;
-                let UserChoice;
-
-                c.addEventListener("click", getUserInput)
-
-                function getUserInput(){
-                var input = document.getElementById("_1").value;
-                if(input === "") {
-                    alert("The Input Is Empty!")
-                } else { 
-                    UserChosen = true;
-                    UserChoice = input.toLowerCase();
-                }
-            }
-            </script>
-            <img src="./img/Rock,paper,scissors.jpeg" alt="Icons">
-            <div id="winCount">Wins: </div>
-        </div>
-        <div class="computerInput">
-            <h1 style="color:black; ">Computer Input!</h1>
-
-            <div class="box1"><h3 id="ComMessage">Computer Is Choosing</h3></div>
-            <div class="imageBox"> 
-                <img src="./img/Thinking.png" id="thinking">
-                <div id="cwinCount"></div>
+            <div class="container">
+                <div class="box1"><button id="rock"><img src="./img/rock.png" class="pictures"></button></div>
+                <div class="box2"><button id="paper"><img src="./img/paper.png" class="pictures"></button></div>
+                <div class="box3"><button id="scissors"><img src="./img/scissors.png" class="pictures"></button></div>
             </div>
-            <script>
-                getComputerChoice()
-                let playerWins = 0;
-                let ComputerWins = 0;
-                document.getElementById("winCount").innerHTML = "Wins : 0"
-                document.getElementById("cwinCount").innerHTML = "Wins : 0"
-                c.addEventListener("click", check)
-                c.addEventListener("click", update)
-                let message;
-                function check(){
+            <script defer>
+             const buttons = document.querySelectorAll('button')
+             let userChoice
+             for(const button of buttons) {
+                button.addEventListener('click', getUserChoice)
+                button.addEventListener('click', check)
+                button.addEventListener('click', update)
+                function getUserChoice(value){
+                if(button.id = 'rock'){
+                    UserChoice = "rock"
+                   console.log(UserChoice)
+                } else if(button.id = 'paper'){
+                     UserChoice = "paper"
+                    console.log(UserChoice)
+                } else if(button.id = 'scissors') {
+                     UserChoice = "scissors"
+                    console.log(UserChoice)
+                }
+             }
+             function update(){
+                    document.getElementById("ComMessage").innerHTML = "Computer Has Chosen:  " + computerChoice
+                    document.getElementById("Message1").innerHTML = message
+                    document.getElementById("thinking").src = "./img/Done.png"
+                }
+            getComputerChoice()
+            let playerWins = 0;
+            let ComputerWins = 0;
+            let message;
+            function check(){
                     if(UserChoice == "rock" && computerChoice == "Paper") {
                         message = ("GG Computer Wins")
                         ComputerWins += 1;
@@ -95,16 +89,26 @@
                         document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
                     } else if(UserChoice == "paper" && computerChoice == "Paper") {
                         message = ("Tie!")
-                    } else {
-                        message = ("Invalid input!")
                     }
                     
                 }
-                function update(){
-                    document.getElementById("ComMessage").innerHTML = "Computer Has Chosen:  " + computerChoice
-                    document.getElementById("Message1").innerHTML = message
-                    document.getElementById("thinking").src = "./img/Done.png"
-                }
+             }
+            
+            </script>
+            <img src="./img/Rock,paper,scissors.jpeg" alt="Icons">
+            <div id="winCount">Wins: </div>
+        </div>
+        <div class="computerInput">
+            <h1 style="color:black; ">Computer Input!</h1>
+
+            <div class="box1"><h3 id="ComMessage">Computer Is Choosing</h3></div>
+            <div class="imageBox"> 
+                <img src="./img/Thinking.png" id="thinking">
+                <div id="cwinCount"></div>
+            </div>
+            <script>
+                document.getElementById("winCount").innerHTML = "Wins : 0"
+                document.getElementById("cwinCount").innerHTML = "Wins : 0"
             </script>
         </div>
     </div>

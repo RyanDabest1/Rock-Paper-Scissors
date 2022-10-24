@@ -46,3 +46,35 @@ img{
     margin-top: 36px;
     font-size: 38px;
 }
+div.container{
+    display: flex;
+    padding: 0px;
+    margin-top: 30px;
+    width: fit-content;
+    margin-left: 62px;
+
+}
+.container > div{
+    flex-direction: row;
+    flex: auto;
+    border: 2px solid white;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 0px;
+}
+.pictures{
+    width: 40px;
+    margin: 10px;
+    height: 40px;
+}
+button{
+    width: fit-content;
+    border-radius: 20px;
+}
+.container > div:hover{
+    transform: scale(0.7);
+    background-color: black;
+}
+button:hover{
+    background-color: black;
+}
