@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
     <title>Rock Paper Scissors</title>
-    <script>
+    <script defer>
+         let playerWins = 0;
+        let ComputerWins = 0;
         //Computer Guess Function
         let computerChoice;
     function getComputerChoice(){   
@@ -16,7 +18,24 @@
     } else if (num === 2) {
         computerChoice = "Scissors";
     }
-}
+    console.log(computerChoice)
+}   
+            function checkWins() {
+                    if(playerWins + ComputerWins === 5){
+                        if(playerWins > ComputerWins){
+                            document.getElementById("Message1").innerHTML = "The Player Is the winner!!"
+                        } else {
+                            document.getElementById("Message1").innerHTML = "The Computer Won!! You Loose"
+                        }
+                    }
+
+            }
+            function updateReverse(){
+                    document.getElementById("ComMessage").innerHTML = "Computer Is Choosing"
+                    document.getElementById("Message1").innerHTML = "Match in Progress"
+                    document.getElementById("thinking").src = "./img/Thinking.png"
+                    update()
+            }
     </script>
 </head>
 <body>
@@ -30,71 +49,6 @@
                 <div class="box2"><button id="paper"><img src="./img/paper.png" class="pictures"></button></div>
                 <div class="box3"><button id="scissors"><img src="./img/scissors.png" class="pictures"></button></div>
             </div>
-            <script defer>
-             const buttons = document.querySelectorAll('button')
-             let userChoice
-             for(const button of buttons) {
-                button.addEventListener('click', getUserChoice)
-                button.addEventListener('click', check)
-                button.addEventListener('click', update)
-                function getUserChoice(value){
-                if(button.id = 'rock'){
-                    UserChoice = "rock"
-                   console.log(UserChoice)
-                } else if(button.id = 'paper'){
-                     UserChoice = "paper"
-                    console.log(UserChoice)
-                } else if(button.id = 'scissors') {
-                     UserChoice = "scissors"
-                    console.log(UserChoice)
-                }
-             }
-             function update(){
-                    document.getElementById("ComMessage").innerHTML = "Computer Has Chosen:  " + computerChoice
-                    document.getElementById("Message1").innerHTML = message
-                    document.getElementById("thinking").src = "./img/Done.png"
-                }
-            getComputerChoice()
-            let playerWins = 0;
-            let ComputerWins = 0;
-            let message;
-            function check(){
-                    if(UserChoice == "rock" && computerChoice == "Paper") {
-                        message = ("GG Computer Wins")
-                        ComputerWins += 1;
-                        document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
-                    } else if(UserChoice == "rock" && computerChoice == "Scissors") {
-                        message = ("GG Player Wins!")
-                        playerWins += 1;
-                        document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
-                    } else if(UserChoice == "rock" && computerChoice == "Rock") {
-                        message = ("Tie!")
-                    } else if(UserChoice == "scissors" && computerChoice == "Paper") {
-                        message = ("GG Player Wins!")
-                        playerWins += 1;
-                        document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
-                    } else if(UserChoice == "scissors" && computerChoice == "Rock") {
-                        message = ("GG Computer Wins!")
-                        ComputerWins += 1;
-                        document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
-                    } else if(UserChoice == "scissors" && computerChoice == "Scissors") {
-                        message =("Tie!")
-                    } else if(UserChoice == "paper" && computerChoice == "Rock") {
-                        message = ("GG Player Wins!")
-                        playerWins += 1;
-                        document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
-                    } else if(UserChoice == "paper" && computerChoice == "Scissors") {
-                        message = ("GG Computer Wins!")
-                        ComputerWins += 1;
-                        document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
-                    } else if(UserChoice == "paper" && computerChoice == "Paper") {
-                        message = ("Tie!")
-                    }
-                    
-                }
-             }
-            
-            </script>
             <img src="./img/Rock,paper,scissors.jpeg" alt="Icons">
             <div id="winCount">Wins: </div>
         </div>
@@ -110,6 +64,69 @@
                 document.getElementById("winCount").innerHTML = "Wins : 0"
                 document.getElementById("cwinCount").innerHTML = "Wins : 0"
             </script>
+             <script defer>
+                const buttons = document.querySelectorAll('button')
+                let userChoice
+                for(const button of buttons) {
+                   button.addEventListener('click', getUserChoice)
+                   button.addEventListener('click', check)
+                   button.addEventListener('click', update)
+                   button.addEventListener('click', checkWins)
+                   function getUserChoice(value){
+                   if(button.id === 'rock'){
+                       UserChoice = "rock"
+                      console.log(UserChoice)
+                   } else if(button.id === 'paper'){
+                        UserChoice = "paper"
+                       console.log(UserChoice)
+                   } else if(button.id === 'scissors') {
+                        UserChoice = "scissors"
+                       console.log(UserChoice)
+                   }
+                }
+                function update(){
+                       document.getElementById("ComMessage").innerHTML = "Computer Has Chosen:  " + computerChoice
+                       document.getElementById("Message1").innerHTML = message
+                       document.getElementById("thinking").src = "./img/Done.png"
+                   }
+               let message;
+               function check(){
+                        getComputerChoice()
+                       if(UserChoice == "rock" && computerChoice == "Paper") {
+                           message = ("GG Computer Wins")
+                           ComputerWins += 1;
+                           document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
+                       } else if(UserChoice == "rock" && computerChoice == "Scissors") {
+                           message = ("GG Player Wins!")
+                           playerWins += 1;
+                           document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
+                       } else if(UserChoice == "rock" && computerChoice == "Rock") {
+                           message = ("Tie!")
+                       } else if(UserChoice == "scissors" && computerChoice == "Paper") {
+                           message = ("GG Player Wins!")
+                           playerWins += 1;
+                           document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
+                       } else if(UserChoice == "scissors" && computerChoice == "Rock") {
+                           message = ("GG Computer Wins!")
+                           ComputerWins += 1;
+                           document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
+                       } else if(UserChoice == "scissors" && computerChoice == "Scissors") {
+                           message =("Tie!")
+                       } else if(UserChoice == "paper" && computerChoice == "Rock") {
+                           message = ("GG Player Wins!")
+                           playerWins += 1;
+                           document.getElementById("winCount").innerHTML = "Wins: " + playerWins;
+                       } else if(UserChoice == "paper" && computerChoice == "Scissors") {
+                           message = ("GG Computer Wins!")
+                           ComputerWins += 1;
+                           document.getElementById("cwinCount").innerHTML = "Wins: " + ComputerWins;
+                       } else if(UserChoice == "paper" && computerChoice == "Paper") {
+                           message = ("Tie!")
+                       }
+                   }
+                }
+               
+               </script>
         </div>
     </div>
     
